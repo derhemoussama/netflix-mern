@@ -1,67 +1,57 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  decrement,
-  increment,
-  incrementByAmount,
-  incrementAsync,
-  incrementIfOdd,
-  selectCount,
-} from './counterSlice';
-import styles from './Counter.module.css';
+import { login, logout, selectUser } from './userSlice';
+import styles from './Counter.module.css'; // Assuming this CSS module contains relevant styles
 
-export function Counter() {
-  const count = useSelector(selectCount);
+export function UserComponent() {
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
-  const [incrementAmount, setIncrementAmount] = useState('2');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const incrementValue = Number(incrementAmount) || 0;
+  const handleLogin = () => {
+    if (email && password) {
+      dispatch(login({ email, password }));
+    } else {
+      alert("Please enter both email and password.");
+    }
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <div>
-      <div className={styles.row}>
-        <button
-          className={styles.button}
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
-          -
-        </button>
-        <span className={styles.value}>{count}</span>
-        <button
-          className={styles.button}
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
-          +
-        </button>
-      </div>
-      <div className={styles.row}>
-        <input
-          className={styles.textbox}
-          aria-label="Set increment amount"
-          value={incrementAmount}
-          onChange={(e) => setIncrementAmount(e.target.value)}
-        />
-        <button
-          className={styles.button}
-          onClick={() => dispatch(incrementByAmount(incrementValue))}
-        >
-          Add Amount
-        </button>
-        <button
-          className={styles.asyncButton}
-          onClick={() => dispatch(incrementAsync(incrementValue))}
-        >
-          Add Async
-        </button>
-        <button
-          className={styles.button}
-          onClick={() => dispatch(incrementIfOdd(incrementValue))}
-        >
-          Add If Odd
-        </button>
-      </div>
+      {user ? (
+        <div>
+          <h1>Welcome, {user.email}</h1>
+          <button className={styles.button} onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+      ) : (
+        <div>
+          <input
+            className={styles.textbox}
+            aria-label="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+          />
+          <input
+            className={styles.textbox}
+            aria-label="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            type="password"
+          />
+          <button className={styles.button} onClick={handleLogin}>
+            Login
+          </button>
+        </div>
+      )}
     </div>
   );
 }

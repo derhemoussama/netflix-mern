@@ -1,0 +1,75 @@
+.singupScreen {
+  max-width: 340px;
+  padding: 50px 30px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.85); /* Dark background with transparency */
+  border-radius: 6px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  position: relative;
+  z-index: 2; /* Ensure it's above the background gradient */
+}
+
+.singupScreen > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.singupScreen > form > h1 {
+  text-align: left;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.singupScreen > form > input {
+  outline: none;
+  height: 40px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.singupScreen > form > button {
+  padding: 14px;
+  font-size: 1rem;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  background-color: #e50914;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.singupScreen > form > button:hover {
+  background-color: #f40612;
+}
+
+.singupScreen > form > h4 {
+  text-align: left;
+  margin-top: 24px;
+  font-size: 0.95rem;
+}
+
+.signupScreen__gray {
+  color: #b3b3b3;
+}
+
+.signupScreen__link {
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-left: 5px;
+  transition: color 0.3s ease;
+}
+
+.signupScreen__link:hover {
+  color: #f40612;
+}
